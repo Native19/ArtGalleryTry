@@ -1,0 +1,23 @@
+﻿<script>
+    function GetImage(category) {
+        $.get('/Model/GetImage', { Category: category });
+    }
+</script>
+
+@model List<string>
+@{
+    ViewBag.Title = "Main";
+}
+
+<h3> Категории </h3>
+@foreach (string category in Model)
+{
+    <p><input type="button" onclick="GetImage(@category)" value="@category" /></p>
+}
+<h3>Выберите файл для загрузки</h3>
+<form asp-action="AddFile" asp-controller="Main" method="post" enctype="multipart/form-data">
+    <input type="file" name="uploadedFile" /><br>
+    <input type="submit" value="Загрузить" /><br>
+</form>
+
+
